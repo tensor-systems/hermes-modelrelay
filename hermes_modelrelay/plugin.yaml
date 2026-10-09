@@ -1,0 +1,5 @@
+name: modelrelay-provider
+kind: model-provider
+version: 0.1.0
+description: ModelRelay (modelrelay.ai) — per-model capabilities (vision, tools, context) from its live /v1/models catalog
+author: Tensor Systems

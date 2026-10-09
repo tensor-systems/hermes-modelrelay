@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hermes-modelrelay"
+version = "0.1.0"
+description = "Hermes Agent model-provider plugin for ModelRelay: per-model capabilities from its /v1/models catalog"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+# hermes-agent itself is the host; it is not declared as a dependency so installing the plugin
+# never pulls a second copy of Hermes into the environment.
+dependencies = []
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+
+# A bare module target: importing it registers the profile (same contract as a plugin dir's
+# __init__.py). Hermes loads it only when ``modelrelay`` is listed in ``plugins.enabled``.
+[project.entry-points."hermes_agent.plugins"]
+modelrelay = "hermes_modelrelay"
+
+[tool.setuptools]
+packages = ["hermes_modelrelay"]
+
+[tool.setuptools.package-data]
+hermes_modelrelay = ["plugin.yaml"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
